@@ -37,6 +37,9 @@
 .dropFileInputLabel img {
     width: 100px;
 }
+.cloudIcon{
+    opacity: 0.1;
+}
 
 .dropFilePreview {
     margin-top: 30px;

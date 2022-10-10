@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { useRef, useState } from "react";
-import uploadImg from "/public/cloud-upload-regular-240.png";
+import uploadImg from "/public/cloud-upload-icon.svg";
 import fileIcon from "/public/file-icon.svg";
-import classes from './DragDropInput.module.css'
+import classes from "./DragDropInput.module.css";
 
 const DragDropInput = (props) => {
   const wrapperRef = useRef(null);
@@ -30,13 +31,13 @@ const DragDropInput = (props) => {
     <>
       <div
         ref={wrapperRef}
-        className={classes.dropFileInputContainer
-}        onDragEnter={onDragEnter}
+        className={classes.dropFileInputContainer}
+        onDragEnter={onDragEnter}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
         <div className={classes.dropFileInputLabel}>
-          <img src={uploadImg} alt="" />
+          <Image src={uploadImg} layout="responsive"className={classes.cloudIcon} alt="" />
           <p>Drop your video here</p>
         </div>
         <input type="file" value="" onChange={onFileDrop} />
@@ -45,15 +46,15 @@ const DragDropInput = (props) => {
         <div className={classes.dropFilePreview}>
           <p className={classes.dropFilePreviewTitle}>Ready to convert</p>
           <div className={classes.dropFilePreviewItem}>
-            <img src="/public/file-icon.svg" alt="file icon" />
+            <Image src={fileIcon} layout='fill' alt="file icon" />
             <div className={classes.dropFilePreviewItemInfo}>
               <p>{file.name}</p>
-              <p>{file.size}B</p>
             </div>
             <span
               className={classes.dropFilePreviewItemDelete}
               onClick={() => fileRemove()}
-            >x
+            >
+              x
             </span>
           </div>
         </div>

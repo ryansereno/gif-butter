@@ -87,3 +87,8 @@ button:hover{
   transform: translateY(-2px);
   box-shadow: 8px 9px 0px 0 black;
 }
+button:active{
+  transform: translateY(0);
+  box-shadow: 7px 7px 0px 0 black;
+  opacity: 0.8;
+}

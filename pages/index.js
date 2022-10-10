@@ -11,8 +11,11 @@ export default function Home() {
   const [ready, setReady] = useState(false);
   const [video, setVideo] = useState();
   const [gif, setGif] = useState();
+  const [isProcessing, setIsProcessing] = useState(false);
   const load = async () => {
-    await ffmpeg.load();
+    if (!ffmpeg.isLoaded()) {
+      await ffmpeg.load();
+    }
     setReady(true);
   };
   useEffect(() => {
@@ -22,6 +25,7 @@ export default function Home() {
     setVideo(file);
   };
   const convertToGif = async () => {
+    setIsProcessing(true);
     // Write the file to memory
     ffmpeg.FS("writeFile", "test.mp4", await fetchFile(video));
 
@@ -46,6 +50,7 @@ export default function Home() {
       new Blob([data.buffer], { type: "image/gif" })
     );
     setGif(url);
+    setIsProcessing(false);
   };
 
   return ready ? (
@@ -57,17 +62,25 @@ export default function Home() {
           <br /> butter
         </h1>
       </header>
-      <main className="box">
-        <h2>
-          <i>Smooth, low bandwidth gif conversion</i>
-        </h2>
-        <DragDropInput onFileChange={uploadHandler} />
-        {video && (
-          <video controls width="250" src={URL.createObjectURL(video)}></video>
-        )}
-        <button onClick={convertToGif}>Convert</button>
-        {gif && <img src={gif} width="250" />}
-      </main>
+      {!gif && !isProcessing && (
+        <main className="box">
+          <h2>
+            <i>Smooth, low bandwidth gif conversion</i>
+          </h2>
+          {!video && <DragDropInput onFileChange={uploadHandler} />}
+          {video && (
+            <video
+              controls
+              width="250"
+              src={URL.createObjectURL(video)}
+            ></video>
+          )}
+          <button onClick={video && convertToGif}>Convert</button>
+        </main>
+      )}
+      {gif && !isProcessing && (
+        <main className="box">{gif && <img src={gif} width="250" />}</main>
+      )}
       <footer>
         <p>
           Made with ❤️️ by&nbsp;
