@@ -1,19 +1,7 @@
-import { useDropzone } from "react-dropzone";
-import React, {useState} from 'react'
 import JarLogo from "./components/UI/JarLogo";
+import DragDropInput from "./components/DragDropInput/DragDropInput";
 
 function App() {
-  const [file, setFile] = useState();
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "video/*",
-    onDrop: (acceptedFile) => {
-      setFile(
-        Object.assign(acceptedFile, {
-          preview: URL.createObjectURL(acceptedFile),
-        })
-      );
-    },
-  });
   return (
     <div className="container">
       <header>
@@ -23,14 +11,11 @@ function App() {
           <br /> butter
         </h1>
       </header>
-      <main>
+      <main className="box">
         <h2>
           <i>Fast video to gif conversion</i>
         </h2>
-        <div className="card file-upload" {...getRootProps()}>
-          upload file
-          <input {...getInputProps()} />
-        </div>
+        <DragDropInput />
       </main>
       <footer>
         <p>Made by Ryan</p>
