@@ -90,7 +90,7 @@ export default function Home() {
       {!gif && isProcessing && (
         <main className="box">
           <Spinner color="lightgray" />
-          <p className="loading-text" >We're mixing up a fresh gif for you;)</p>
+          <p className="loading-text" >We're mixing up a fresh gif for you😊</p>
           
         </main>
       )}
