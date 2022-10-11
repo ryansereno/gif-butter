@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import JarLogo from "../components/UI/JarLogo";
 import DragDropInput from "../components/DragDropInput/DragDropInput";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
+import Spinner from '../components/UI/Spinner'
 const ffmpeg = createFFmpeg({
   log: true,
   corePath: "http://localhost:3000/ffmpeg-core.js",
@@ -52,7 +53,6 @@ export default function Home() {
     setGif(url);
     setIsProcessing(false);
   };
-
   return ready ? (
     <div className="container">
       <header>
@@ -75,11 +75,38 @@ export default function Home() {
               src={URL.createObjectURL(video)}
             ></video>
           )}
-          <button onClick={video && convertToGif}>Convert</button>
+          {video && (
+            <button className="btn-submit" onClick={video && convertToGif}>
+              Convert
+            </button>
+          )}
+        </main>
+      )}
+      {!gif && isProcessing && (
+        <main className="box">
+          <Spinner color="lightgray" />
+          <p className="loading-text" >We're mixing up a fresh gif for you;)</p>
+          
         </main>
       )}
       {gif && !isProcessing && (
-        <main className="box">{gif && <img src={gif} width="250" />}</main>
+        <main className="box">
+          <img src={gif} width="250" />
+          <a href={gif} download="output.gif">
+            <button className="btn-download" onClick={() => {}}>
+              Download
+            </button>
+          </a>
+          <button
+            className="btn-reset"
+            onClick={() => {
+              setGif(null);
+              setVideo(null);
+            }}
+          >
+            Convert Another
+          </button>
+        </main>
       )}
       <footer>
         <p>

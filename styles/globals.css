@@ -43,6 +43,10 @@ main {
   background-color: white;
   align-items: center;
 }
+.loading-text{
+  color: lightgray;
+font-weight: bold;
+}
 footer {
   background-color: white;
   display: flex;
@@ -71,8 +75,33 @@ footer a{
 h2 {
   align-self: center;
 }
-button{
+.btn-submit{
   background-color:orangered;
+  padding: 0.5em 1.5em;
+  border-color: black;
+  border-radius: 5px;
+  border-width: 3px;
+  box-shadow: 7px 7px 0px 0 black;
+  transition: ease-in 50ms;
+  margin-top: 20px;
+  font-weight:bold;
+  font-size: 1em;
+}
+
+.btn-download{
+  background-color:skyblue;
+  padding: 0.5em 1.5em;
+  border-color: black;
+  border-radius: 5px;
+  border-width: 3px;
+  box-shadow: 7px 7px 0px 0 black;
+  transition: ease-in 50ms;
+  margin-top: 20px;
+  font-weight:bold;
+  font-size: 1em;
+}
+.btn-reset{
+  background-color:limegreen;
   padding: 0.5em 1.5em;
   border-color: black;
   border-radius: 5px;
@@ -92,3 +121,4 @@ button:active{
   box-shadow: 7px 7px 0px 0 black;
   opacity: 0.8;
 }
+
