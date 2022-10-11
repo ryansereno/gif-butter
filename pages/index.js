@@ -4,15 +4,16 @@ import JarLogo from "../components/UI/JarLogo";
 import DragDropInput from "../components/DragDropInput/DragDropInput";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import Spinner from "../components/UI/Spinner";
+import Wiggle from "../components/UI/Shake";
 
-const ffmpegCore = async () =>{
-  const url = 'https://gif-butter.vercel.app/ffmpeg-core.js'
-const res = await fetch(url)
-  return res.blob()
-}
+const ffmpegCore = async () => {
+  const url = "https://gif-butter.vercel.app/ffmpeg-core.js";
+  const res = await fetch(url);
+  return res.blob();
+};
 const ffmpeg = createFFmpeg({
   log: true,
-  corePath: 'https://gif-butter.vercel.app/ffmpeg-core.js',
+  corePath: "https://gif-butter.vercel.app/ffmpeg-core.js",
 });
 
 export default function Home() {
@@ -60,26 +61,28 @@ export default function Home() {
     setGif(url);
     setIsProcessing(false);
   };
-  return ready ? (
-
+  return (
     <div className="container">
       <Head>
         <title>gifButter</title>
         <link rel="icon" href="/gif-butter.png" />
       </Head>
       <header>
-        <JarLogo />
-        <h1>
-          gif
-          <br /> butter
-        </h1>
+        <Wiggle rotation={20} timing={150}>
+          <JarLogo />
+        </Wiggle>
+          <h1>
+            gif
+            <br /> butter
+          </h1>
       </header>
       {!gif && !isProcessing && (
         <main className="box">
+
           <h2>
             <i>Smooth, low bandwidth gif conversion</i>
           </h2>
-          {!video && <DragDropInput onFileChange={uploadHandler} />}
+          {!ready ? <Spinner color="lightgray"/> : !video && <DragDropInput onFileChange={uploadHandler} />}
           {video && (
             <video
               controls
@@ -130,28 +133,4 @@ export default function Home() {
         </p>
       </footer>
     </div>
-  ):
-   (
-    <div className="container">
-        <header>
-          <JarLogo />
-          <h1>
-            gif
-            <br /> butter
-          </h1>
-        </header>
-      <main className="box">
-        <Spinner color="lightgray" />
-
-      </main>
-        <footer>
-          <p>
-            Made with ❤️️ by&nbsp;
-            <a href="https://good-molecule-a96.notion.site/Hey-I-m-Ryan-cb8c78b661cf4d879afd6ae8b0c169c9">
-              Ryan
-            </a>
-          </p>
-        </footer>
-    </div>
-  ) 
-}
+  ) }
