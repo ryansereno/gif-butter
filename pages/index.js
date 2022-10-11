@@ -1,9 +1,9 @@
-import Head from 'next/head'
+import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import JarLogo from "../components/UI/JarLogo";
 import DragDropInput from "../components/DragDropInput/DragDropInput";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
-import Spinner from '../components/UI/Spinner'
+import Spinner from "../components/UI/Spinner";
 const ffmpeg = createFFmpeg({
   log: true,
   corePath: "http://localhost:3000/ffmpeg-core.js",
@@ -90,8 +90,9 @@ export default function Home() {
       {!gif && isProcessing && (
         <main className="box">
           <Spinner color="lightgray" />
-          <p className="loading-text" >We're mixing up a fresh gif for you😊</p>
-          
+          <p className="loading-text">
+            We&apos;re mixing up a fresh gif for you😊
+          </p>
         </main>
       )}
       {gif && !isProcessing && (
@@ -123,6 +124,26 @@ export default function Home() {
       </footer>
     </div>
   ) : (
-    <p>Loading...</p>
+    <div className="container">
+        <header>
+          <JarLogo />
+          <h1>
+            gif
+            <br /> butter
+          </h1>
+        </header>
+      <main className="box">
+        <Spinner color="lightgray" />
+
+      </main>
+        <footer>
+          <p>
+            Made with ❤️️ by&nbsp;
+            <a href="https://good-molecule-a96.notion.site/Hey-I-m-Ryan-cb8c78b661cf4d879afd6ae8b0c169c9">
+              Ryan
+            </a>
+          </p>
+        </footer>
+    </div>
   );
 }
