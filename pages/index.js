@@ -42,10 +42,10 @@ export default function Home() {
     await ffmpeg.run(
       "-i",
       "test.mp4",
-      "-t",
-      "2.5",
+      "-vf",
+      "fps=10,scale=450:-1",
       "-ss",
-      "2.0",
+      "0",
       "-f",
       "gif",
       "out.gif"
