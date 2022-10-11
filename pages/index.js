@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React, { useState, useEffect } from "react";
 import JarLogo from "../components/UI/JarLogo";
 import DragDropInput from "../components/DragDropInput/DragDropInput";
@@ -55,6 +56,10 @@ export default function Home() {
   };
   return ready ? (
     <div className="container">
+      <Head>
+        <title>gifButter</title>
+        <link rel="icon" href="/gif-butter.png" />
+      </Head>
       <header>
         <JarLogo />
         <h1>
