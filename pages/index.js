@@ -82,7 +82,7 @@ export default function Home() {
           <h2>
             <i>Smooth, low bandwidth gif conversion</i>
           </h2>
-          {!ready ? <Spinner color="lightgray"/> : !video && <DragDropInput onFileChange={uploadHandler} />}
+          {!video && <DragDropInput onFileChange={uploadHandler} />}
           {video && (
             <video
               controls
